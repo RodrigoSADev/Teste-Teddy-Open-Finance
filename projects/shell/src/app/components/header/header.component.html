@@ -1,12 +1,31 @@
 <header>
-  <nav>
-    <ul>
-      <li><a routerLink="/clientes" routerLinkActive="active">Clientes</a></li>
-      <li>
-        <a routerLink="/clientes-selecionados" routerLinkActive="active"
+  <nav class="d-flex justify-content-around">
+    <img src="/teddy.png" alt="Logo Teddy Open Finance" />
+    <ul class="d-flex gap-3 navbar-nav">
+      <li class="nav-item">
+        <a
+          class="nav-link active"
+          routerLink="/clientes"
+          routerLinkActive="active"
+          >Clientes</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/clientes-selecionados"
+          routerLinkActive="active"
           >Clientes Selecionados</a
         >
       </li>
+      <button (click)="onLogout()" type="button" class="btn btn-warning">
+        Sair
+      </button>
     </ul>
+    <div>
+      <p>
+        Olá, <span class="fw-bold">{{ username() }}!</span>
+      </p>
+    </div>
   </nav>
 </header>
