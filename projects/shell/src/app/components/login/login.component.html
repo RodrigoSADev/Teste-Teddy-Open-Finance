@@ -1,7 +1,7 @@
 <section>
   <h1>Olá, seja bem-vindo!</h1>
-  <form>
-    <input type="text" />
-    <button>Entrar</button>
+  <form [formGroup]="loginForm">
+    <input type="text" formControlName="user" />
+    <button (click)="onSubmit()">Entrar</button>
   </form>
 </section>
