@@ -19,6 +19,9 @@
           "options": {
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ],
+            "styles": [
+              "projects/shell/src/custom-theme.scss"
             ]
           },
           "configurations": {
@@ -135,6 +138,9 @@
           "options": {
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ],
+            "styles": [
+              "projects/clientes/src/custom-theme.scss"
             ]
           },
           "configurations": {
