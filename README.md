@@ -78,3 +78,8 @@ Para rodar ambos os projetos em modo de desenvolvimento, utilize o comando:
 ```sh
 npm run start:all
 ```
+## Vídeo da Aplicação Rodando
+
+
+https://github.com/user-attachments/assets/722b9028-29e1-474d-ba69-43dd46438bfb
+
