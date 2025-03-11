@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Client } from '../../interfaces/client.interface';
 import { ClientsService } from '../../services/clients.service';
 import { CreateClientDialogComponent } from '../create-client-dialog/create-client-dialog.component';
+import { DeleteClientDialogComponent } from '../delete-client-dialog/delete-client-dialog.component';
 
 @Component({
   selector: 'app-clientes-list-clients',
@@ -74,6 +75,29 @@ export class ListClientsComponent implements OnInit {
       if (result) {
         this.loadClients();
         this.totalClients.set(this.totalClients() + 1);
+      }
+    });
+  }
+
+  onDeleteClient(id: number): void {
+    const client = this.clients().find((c) => c.id === id);
+
+    const dialogRef = this.dialog.open(DeleteClientDialogComponent, {
+      width: '500px',
+      data: { client },
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.clientsService.deleteClient(id).subscribe({
+          next: () => {
+            this.totalClients.set(this.totalClients() - 1);
+            this.loadClients();
+          },
+          error: (err) => {
+            console.error(err);
+          },
+        });
       }
     });
   }

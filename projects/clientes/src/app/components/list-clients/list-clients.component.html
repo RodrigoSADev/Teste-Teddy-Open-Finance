@@ -19,6 +19,21 @@
               Empresa: {{ client.companyValuation | currency : "BRL" }}
             </p>
           </div>
+          <div class="card-footer d-flex justify-content-around">
+            <button type="button" class="btn btn-secondary">
+              <i class="bi bi-plus-lg"></i>
+            </button>
+            <button type="button" class="btn btn-secondary">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button
+              (click)="onDeleteClient(client.id)"
+              type="button"
+              class="btn btn-secondary"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
         </div>
       </div>
       }
