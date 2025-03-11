@@ -1,0 +1,24 @@
+services:
+  shell:
+    build:
+      context: .
+      dockerfile: projects/shell/Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - clientes
+    networks:
+      - mfe-network
+
+  clientes:
+    build:
+      context: .
+      dockerfile: projects/clientes/Dockerfile
+    ports:
+      - "4201:80"
+    networks:
+      - mfe-network
+
+networks:
+  mfe-network:
+    driver: bridge
