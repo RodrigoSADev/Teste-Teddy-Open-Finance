@@ -1,13 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogClose, MatDialogRef } from '@angular/material/dialog';
 import { Client } from '../../interfaces/client.interface';
 import { ClientsService } from '../../services/clients.service';
 
 @Component({
   selector: 'app-clientes-create-client-dialog',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, MatDialogClose],
   templateUrl: './create-client-dialog.component.html',
   styleUrl: './create-client-dialog.component.scss',
 })
@@ -18,8 +17,11 @@ export class CreateClientDialogComponent {
 
   addClientForm = this.FormBuilder.group({
     name: ['', [Validators.required]],
-    salary: ['', [Validators.required]],
-    companyValuation: ['', [Validators.required]],
+    salary: [0, [Validators.required, Validators.pattern(/^[1-9]\d*$/)]],
+    companyValuation: [
+      0,
+      [Validators.required, Validators.pattern(/^[1-9]\d*$/)],
+    ],
   });
 
   onSubmit(): void {
@@ -39,9 +41,5 @@ export class CreateClientDialogComponent {
         },
       });
     }
-  }
-
-  onCancel(): void {
-    this.dialogRef.close();
   }
 }
