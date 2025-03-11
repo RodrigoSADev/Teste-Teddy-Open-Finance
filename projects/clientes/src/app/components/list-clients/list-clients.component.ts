@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Client } from '../../interfaces/client.interface';
@@ -6,7 +7,7 @@ import { CreateClientDialogComponent } from '../create-client-dialog/create-clie
 
 @Component({
   selector: 'app-clientes-list-clients',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './list-clients.component.html',
   styleUrl: './list-clients.component.scss',
 })
