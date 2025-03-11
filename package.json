@@ -6,6 +6,8 @@
     "start": "ng serve",
     "start:all": "concurrently \"ng serve shell\" \"ng serve clientes\"",
     "build": "ng build",
+    "build:shell": "ng build shell",
+    "build:clientes": "ng build clientes",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
