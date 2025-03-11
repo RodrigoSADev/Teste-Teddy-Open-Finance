@@ -36,7 +36,7 @@ export class EditClientDialogComponent {
     });
   }
 
-  onSubmit(): void {
+  onEdit(): void {
     if (this.editClientForm.valid) {
       const body = {
         id: this.data.client.id,
