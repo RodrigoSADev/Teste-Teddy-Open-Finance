@@ -9,11 +9,11 @@ export const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
-    path: 'clientes',
+    path: '',
     loadComponent: () =>
       loadRemoteModule('clientes', './Component').then((m) => m.AppComponent),
     children: [
-      { path: '', component: ListClientsComponent },
+      { path: 'clientes', component: ListClientsComponent },
       { path: 'clientes-selecionados', component: SelectedClientsComponent },
     ],
     canActivate: [authGuard],
