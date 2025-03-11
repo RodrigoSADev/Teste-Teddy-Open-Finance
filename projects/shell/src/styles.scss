@@ -1,2 +1,7 @@
+$primary: #ec6724; // Defina a nova cor desejada
+
+// Importe o Bootstrap após sobrescrever as variáveis
+@import "bootstrap/scss/bootstrap";
+
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "bootstrap-icons/font/bootstrap-icons.css";
