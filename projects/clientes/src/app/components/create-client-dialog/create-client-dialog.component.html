@@ -1,0 +1,51 @@
+<div class="container p-4">
+  <div class="d-flex justify-content-between align-items-center">
+    <h4 class="mb-4 m-0">Criar Cliente</h4>
+    <button type="button" class="btn btn-secondary" (click)="onCancel()">
+      X
+    </button>
+  </div>
+  <form [formGroup]="addClientForm">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="nameInput"
+        formControlName="name"
+        placeholder="Nome"
+      />
+      <label for="nameInput">Digite o nome</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="salaryInput"
+        formControlName="salary"
+        placeholder="Salário"
+      />
+      <label for="salaryInput">Digite o salário</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="companyInput"
+        formControlName="companyValuation"
+        placeholder="Valor da Empresa"
+      />
+      <label for="companyInput">Digite o valor da empresa</label>
+    </div>
+
+    <button
+      [disabled]="addClientForm.invalid"
+      type="button"
+      class="btn btn-primary col-12"
+      (click)="onSubmit()"
+    >
+      Criar
+    </button>
+  </form>
+</div>
