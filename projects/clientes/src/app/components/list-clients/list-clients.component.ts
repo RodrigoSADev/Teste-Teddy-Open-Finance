@@ -3,6 +3,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Client } from '../../interfaces/client.interface';
 import { ClientsService } from '../../services/clients.service';
+import { SelectedClientsService } from '../../services/selected-clients.service';
 import { CreateClientDialogComponent } from '../create-client-dialog/create-client-dialog.component';
 import { DeleteClientDialogComponent } from '../delete-client-dialog/delete-client-dialog.component';
 import { EditClientDialogComponent } from '../edit-client-dialog/edit-client-dialog.component';
@@ -16,18 +17,21 @@ import { EditClientDialogComponent } from '../edit-client-dialog/edit-client-dia
 export class ListClientsComponent implements OnInit {
   clientsService = inject(ClientsService);
   dialog = inject(MatDialog);
+  selectedClientsService = inject(SelectedClientsService);
 
   clients = signal<Client[]>([]);
   currentPage = signal<number>(1);
   totalPages = signal<number>(1);
   limit = 9;
   totalClients = signal<number>(0);
+  selectedClients = signal<Client[]>([]);
 
   get pages(): number[] {
     return Array.from({ length: this.totalPages() }, (_, i) => i + 1);
   }
 
   ngOnInit(): void {
+    this.selectedClients.set(this.selectedClientsService.getSelectedClients());
     this.loadClients();
   }
 
@@ -107,6 +111,15 @@ export class ListClientsComponent implements OnInit {
           next: () => {
             this.totalClients.set(this.totalClients() - 1);
             this.loadClients();
+
+            // Removendo o cliente da lista de selecionados caso ele seja apagado
+            const selectedClients = this.selectedClients();
+            const index = selectedClients.findIndex((c) => c.id === id);
+            if (index !== -1) {
+              selectedClients.splice(index, 1);
+              this.selectedClients.set(selectedClients);
+              this.selectedClientsService.setSelectedClients(selectedClients);
+            }
           },
           error: (err) => {
             console.error(err);
@@ -114,5 +127,23 @@ export class ListClientsComponent implements OnInit {
         });
       }
     });
+  }
+
+  toggleSelectClient(client: Client): void {
+    const selectedClients = this.selectedClients();
+    const index = selectedClients.findIndex((c) => c.id === client.id);
+
+    if (index === -1) {
+      selectedClients.push(client);
+    } else {
+      selectedClients.splice(index, 1);
+    }
+
+    this.selectedClients.set(selectedClients);
+    this.selectedClientsService.setSelectedClients(selectedClients);
+  }
+
+  isSelected(client: Client): boolean {
+    return this.selectedClients().some((c) => c.id === client.id);
   }
 }

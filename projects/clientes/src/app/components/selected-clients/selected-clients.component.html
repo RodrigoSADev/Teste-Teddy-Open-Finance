@@ -1,1 +1,47 @@
-<h1>selected-clients works!</h1>
+<section class="bg-body-tertiary mt-5 pb-5">
+  @if (selectedClients().length !== 0) {
+  <div class="container">
+    <p>
+      <span class="fw-bold">
+        {{ selectedClients().length }}
+      </span>
+      Clientes Selecionados
+    </p>
+    <div class="row">
+      @for (client of selectedClients(); track client.id) {
+      <div class="col-12 col-md-6 col-lg-4 mb-3 text-center">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ client.name }}</h5>
+            <p class="card-text">
+              Salário: {{ client.salary | currency : "BRL" }}
+            </p>
+            <p class="card-text">
+              Empresa: {{ client.companyValuation | currency : "BRL" }}
+            </p>
+          </div>
+          <div class="card-footer d-flex justify-content-around">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="toggleSelectClient(client)"
+            >
+              <i class="bi bi-dash-lg"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    <button
+      type="button"
+      (click)="clearSelectedClients()"
+      class="btn btn-outline-primary col-12 mt-3"
+    >
+      Limpar Clientes Selecionados
+    </button>
+  </div>
+  } @else {
+  <h1 class="text-center">Nenhum Cliente Selecionado</h1>
+  }
+</section>
