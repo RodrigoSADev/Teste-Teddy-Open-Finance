@@ -1,59 +1,72 @@
-# TesteTeddyOpenFinance
+# Teste Técnico - Teddy Open Finance
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+## Sobre o Sistema
 
-## Development server
+O sistema possui uma tela inicial onde o usuário pode inserir o nome e, em seguida, será redirecionado para uma tela com a lista de todos os clientes cadastrados. Nesta tela, o usuário poderá cadastrar, selecionar, atualizar e excluir clientes. Além disso, há uma tela para visualização dos clientes selecionados.
 
-To start a local development server, run:
+## Requisitos do Sistema
 
-```bash
-ng serve
-```
+- Utilize TypeScript. ✅
+- Utilizar Angular (versão mais recente). ✅
+- Crie uma arquitetura de micro-frontends. ✅
+- A aplicação deverá ser responsiva. ✅
+- Utilizar Docker para containerizar a aplicação. ✅
+- Fazer deploy na Vercel. ✅
+- Crie um README explicando como rodar a aplicação. ✅
+- Gravar um vídeo demonstrando toda a aplicação. ✅
+- Sinta-se livre para incluir melhorias. ✅
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Diferenciais
 
-## Code scaffolding
+- Testes end-to-end.
+- Micro front-end para design system.
+- Adicione testes unitários à aplicação.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Critérios de Avaliação
 
-```bash
-ng generate component component-name
-```
+- Componentização.
+- Estrutura de pastas.
+- Gerenciamento de estado.
+- Responsividade.
+- Padrões de código.
+- Padrão de commits.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Como Rodar a Aplicação
 
-```bash
-ng generate --help
-```
+### Pré-requisitos
 
-## Building
+- Node.js (versão 18 ou superior)
+- Docker
+- Angular CLI
 
-To build the project run:
+### Passos para Rodar a Aplicação
 
-```bash
-ng build
-```
+1. Clone o repositório:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+   ```sh
+   git clone <URL_DO_REPOSITORIO>
+   cd <NOME_DO_REPOSITORIO>
+   ```
 
-## Running unit tests
+2. Instale as dependências:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+   ```sh
+   npm install
+   ```
 
-```bash
-ng test
-```
+3. Construa os projetos:
 
-## Running end-to-end tests
+   ```sh
+   npm run build -- --project=shell
+   npm run build -- --project=clientes
+   ```
 
-For end-to-end (e2e) testing, run:
+4. Execute os containers Docker:
 
-```bash
-ng e2e
-```
+   ```sh
+   docker-compose up --build
+   ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+5. Acesse a aplicação no navegador:
+   - Shell: `http://localhost`
+   - Clientes: `http://localhost:4201`
