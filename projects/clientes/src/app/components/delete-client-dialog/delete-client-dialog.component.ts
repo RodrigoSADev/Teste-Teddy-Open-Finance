@@ -17,7 +17,7 @@ export class DeleteClientDialogComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { client: Client }) {}
 
-  onConfirm(): void {
+  onDelete(): void {
     this.dialogRef.close(true);
   }
 }
