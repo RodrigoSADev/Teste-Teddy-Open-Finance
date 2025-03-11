@@ -15,20 +15,53 @@ export class ListClientsComponent implements OnInit {
   dialog = inject(MatDialog);
 
   clients = signal<Client[]>([]);
+  currentPage = signal<number>(1);
+  totalPages = signal<number>(1);
+  limit = 9;
+  totalClients = signal<number>(0);
+
+  get pages(): number[] {
+    return Array.from({ length: this.totalPages() }, (_, i) => i + 1);
+  }
 
   ngOnInit(): void {
     this.loadClients();
   }
 
   loadClients(): void {
-    this.clientsService.getClients(1, 10).subscribe({
+    this.clientsService.getClients(this.currentPage(), this.limit).subscribe({
       next: (response) => {
         this.clients.set(response.clients);
+        this.totalPages.set(response.totalPages);
+
+        if (this.totalClients() === 0) {
+          this.getTotalClients();
+        }
       },
       error: (err) => {
         console.error(err);
       },
     });
+  }
+
+  getTotalClients(): void {
+    this.clientsService.getClients(this.totalPages(), this.limit).subscribe({
+      next: (response) => {
+        this.totalClients.set(
+          (this.totalPages() - 1) * this.limit + response.clients.length
+        );
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
+
+  goToPage(page: number): void {
+    if (page !== this.currentPage()) {
+      this.currentPage.set(page);
+      this.loadClients();
+    }
   }
 
   onCreateClient(): void {
@@ -39,6 +72,7 @@ export class ListClientsComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.loadClients();
+        this.totalClients.set(this.totalClients() + 1);
       }
     });
   }

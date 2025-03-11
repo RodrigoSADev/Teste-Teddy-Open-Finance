@@ -1,6 +1,11 @@
 <section class="bg-body-tertiary mt-5">
   <div class="container">
-    <p>Clientes Encontrados:</p>
+    <p>
+      <span class="fw-bold">
+        {{ totalClients() }}
+      </span>
+      Clientes Encontrados
+    </p>
     <div class="row">
       @for (client of clients(); track client.id) {
       <div class="col-sm-6 mb-3 mb-sm-0">
@@ -21,5 +26,18 @@
     >
       Criar Cliente
     </button>
+
+    <!-- Paginação -->
+    <div class="d-flex justify-content-center mt-3">
+      @for (page of pages; track page) {
+      <button
+        (click)="goToPage(page)"
+        [class.active]="currentPage() === page"
+        class="btn btn-outline-primary mx-1"
+      >
+        {{ page }}
+      </button>
+      }
+    </div>
   </div>
 </section>
