@@ -1,0 +1,18 @@
+<section class="bg-body-tertiary mt-5">
+  <div class="container">
+    <p>Clientes Encontrados:</p>
+    <div class="row">
+      @for (client of clients(); track client.id) {
+      <div class="col-sm-6 mb-3 mb-sm-0">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ client.name }}</h5>
+            <p class="card-text">Salário: {{ client.salary }}</p>
+            <p class="card-text">Empresa: {{ client.companyValuation }}</p>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
