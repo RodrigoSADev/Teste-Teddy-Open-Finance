@@ -70,3 +70,11 @@ O sistema possui uma tela inicial onde o usuário pode inserir o nome e, em segu
 5. Acesse a aplicação no navegador:
    - Shell: `http://localhost`
    - Clientes: `http://localhost:4201`
+
+### Executando a Aplicação em Desenvolvimento
+
+Para rodar ambos os projetos em modo de desenvolvimento, utilize o comando:
+
+```sh
+npm run start:all
+```
