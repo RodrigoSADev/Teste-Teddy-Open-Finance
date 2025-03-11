@@ -24,4 +24,14 @@ export class ClientsService {
   createClient(client: Client): Observable<ClientResponse> {
     return this.http.post<ClientResponse>(this.url, client);
   }
+
+  updateClient(client: Client): Observable<ClientResponse> {
+    return this.http.put<ClientResponse>(`${this.url}/${client.id}`, client);
+  }
+
+  deleteClient(id: number): Observable<Client> {
+    return this.http.delete<Client>(`${this.url}/${id}`, {
+      responseType: 'text' as 'json',
+    });
+  }
 }
