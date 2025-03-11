@@ -5,6 +5,7 @@ import { Client } from '../../interfaces/client.interface';
 import { ClientsService } from '../../services/clients.service';
 import { CreateClientDialogComponent } from '../create-client-dialog/create-client-dialog.component';
 import { DeleteClientDialogComponent } from '../delete-client-dialog/delete-client-dialog.component';
+import { EditClientDialogComponent } from '../edit-client-dialog/edit-client-dialog.component';
 
 @Component({
   selector: 'app-clientes-list-clients',
@@ -75,6 +76,19 @@ export class ListClientsComponent implements OnInit {
       if (result) {
         this.loadClients();
         this.totalClients.set(this.totalClients() + 1);
+      }
+    });
+  }
+
+  onEditClient(client: Client): void {
+    const dialogRef = this.dialog.open(EditClientDialogComponent, {
+      width: '500px',
+      data: { client },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.loadClients();
       }
     });
   }
