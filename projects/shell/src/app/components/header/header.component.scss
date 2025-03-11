@@ -4,4 +4,10 @@ ul {
 
 a {
   text-decoration: none;
+  cursor: pointer;
+}
+
+a.active {
+  border-bottom: 2px solid orange;
+  color: orange;
 }
