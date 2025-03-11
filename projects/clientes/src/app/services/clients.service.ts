@@ -26,7 +26,7 @@ export class ClientsService {
   }
 
   updateClient(client: Client): Observable<ClientResponse> {
-    return this.http.put<ClientResponse>(`${this.url}/${client.id}`, client);
+    return this.http.patch<ClientResponse>(`${this.url}/${client.id}`, client);
   }
 
   deleteClient(id: number): Observable<Client> {
