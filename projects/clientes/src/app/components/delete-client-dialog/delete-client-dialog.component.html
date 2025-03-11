@@ -1,17 +1,13 @@
 <div class="container p-4">
-  <div class="d-flex justify-content-between align-items-center">
-    <h4 class="mb-4 m-0">Excluir cliente</h4>
-    <button type="button" class="btn btn-secondary">X</button>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="m-0">Excluir cliente</h4>
+    <i mat-dialog-close class="bi bi-x-lg"></i>
   </div>
   <p>
     Você está prestes a excluir o cliente:
     <span class="fw-bold">{{ data.client.name }}</span>
   </p>
-  <!-- <button type="button" class="btn btn-primary col-12">Excluir cliente</button> -->
-  <button type="button" class="btn btn-secondary col-6" (click)="onCancel()">
-    Cancelar
-  </button>
-  <button type="button" class="btn btn-danger col-6" (click)="onConfirm()">
+  <button type="button" class="btn btn-primary col-12" (click)="onConfirm()">
     Excluir cliente
   </button>
 </div>
